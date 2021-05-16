@@ -1,0 +1,96 @@
+---
+kind: pipeline
+type: docker
+name: lint
+
+steps:
+  - name: Lint Dockerfiles
+    image: hadolint/hadolint:latest-debian
+    pull: if-not-exists
+    commands:
+      - hadolint --version
+      - hadolint Dockerfile
+    when:
+      status:
+        - failure
+        - success
+
+trigger:
+  event:
+    - pull_request
+    - push
+  ref:
+    exclude:
+      - refs/heads/renovate/*
+
+---
+kind: pipeline
+type: docker
+name: test
+
+steps:
+  - name: docker
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      dockerfile: Dockerfile
+      repo: mwalbeck/jjmumblebot
+      dry_run: true
+
+trigger:
+  event:
+    - pull_request
+
+depends_on:
+  - lint
+
+---
+kind: pipeline
+type: docker
+name: build and publish
+
+steps:
+  - name: determine tags
+    image: mwalbeck/determine-docker-tags
+    pull: if-not-exists
+    environment:
+      VERSION_TYPE: docker_env
+      APP_NAME: JJMUMBLEBOT
+      DOCKERFILE_PATH: Dockerfile
+      CUSTOM_TAGS: latest
+
+  - name: build and publish
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      dockerfile: Dockerfile
+      repo: mwalbeck/jjmumblebot
+      password:
+        from_secret: dockerhub_password
+      username:
+        from_secret: dockerhub_username
+
+  - name: notify
+    image: plugins/matrix
+    pull: if-not-exists
+    settings:
+      homeserver: https://matrix.mwalbeck.org
+      password:
+        from_secret: matrix_password
+      roomid:
+        from_secret: matrix_roomid
+      username:
+        from_secret: matrix_username
+    when:
+      status:
+        - failure
+        - success
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+depends_on:
+  - lint
