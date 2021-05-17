@@ -2,11 +2,12 @@ FROM python:3.9.5-slim-buster
 
 # renovate: datasource=github-tags depName=DuckBoss/JJMumbleBot versioning=semver
 ENV JJMUMBLEBOT_VERSION v5.1.1
+ENV JJMUMBLEBOT_PLUGIN_STREAM_VERSION master
 
 RUN set -ex; \
     \
     groupadd --force --system --gid 608 mumblebot; \
-    useradd --no-log-init --system --gid mumblebot --no-create-home --uid 608 mumblebot || true; \
+    useradd --no-log-init --system --gid mumblebot --home-dir /tmp/mumblebot --uid 608 mumblebot || true; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -20,6 +21,8 @@ RUN set -ex; \
     ; \
     \
     git clone --branch $JJMUMBLEBOT_VERSION https://github.com/DuckBoss/JJMumbleBot.git /app; \
+    \
+    git clone --branch $JJMUMBLEBOT_PLUGIN_STREAM_VERSION https://git.walbeck.it/mwalbeck/JJMumbleBot-plugin-stream.git /app/JJMumbleBot/plugins/extensions/stream; \
     \
     pip install --no-cache-dir -r /app/requirements/requirements.txt -r /app/requirements/web_server.txt; \
     \
@@ -45,7 +48,7 @@ RUN set -ex; \
 
 EXPOSE 7000
 WORKDIR /app
-VOLUME [ "/app/JJMumbleBot/cfg" ]
+VOLUME [ "/app/JJMumbleBot/cfg", "/tmp/mumblebot" ]
 
 USER mumblebot:mumblebot
 
