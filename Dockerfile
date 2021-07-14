@@ -1,7 +1,7 @@
 FROM python:3.9.6-slim-buster@sha256:2c018e29a8eada75e855d78641adda978a2c0a035fd928e281e1240144e8a337
 
 # renovate: datasource=github-tags depName=DuckBoss/JJMumbleBot versioning=semver
-ENV JJMUMBLEBOT_VERSION v5.1.1
+ENV JJMUMBLEBOT_VERSION v5.2.0
 ENV JJMUMBLEBOT_PLUGIN_STREAM_VERSION master
 
 RUN set -ex; \
