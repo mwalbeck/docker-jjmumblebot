@@ -6,3 +6,5 @@
 Docker image for [JJMumbleBot](https://github.com/DuckBoss/JJMumbleBot)
 
 README in progress...
+
+For questions head over to the git repo [here](https://git.walbeck.it/mwalbeck/docker-jjmumblebot) or on [GitHub](https://github.com/mwalbeck/docker-jjmumblebot).
