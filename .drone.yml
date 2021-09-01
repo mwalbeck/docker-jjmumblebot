@@ -101,6 +101,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: d162200c731b506519c7b13da08f08acb469a4a370bbcafea9f7230299864bee
+hmac: 352ab9f1ba64694ffe2da74422b5a1ff7335852c18689f45d7770c790ab396c0
 
 ...
