@@ -35,6 +35,10 @@ steps:
     settings:
       dockerfile: Dockerfile
       repo: mwalbeck/jjmumblebot
+      password:
+        from_secret: dockerhub_password_ro
+      username:
+        from_secret: dockerhub_username
       dry_run: true
 
 trigger:
@@ -97,6 +101,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 66c4371ef819755722dc5a80e2ed656ffd39435926e8f326041f2544c0a508cf
+hmac: d162200c731b506519c7b13da08f08acb469a4a370bbcafea9f7230299864bee
 
 ...
