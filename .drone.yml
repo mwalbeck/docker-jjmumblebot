@@ -34,10 +34,10 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      password:
-        from_secret: dockerhub_password_ro
       username:
         from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password_ro
       repo: mwalbeck/jjmumblebot
       dry_run: true
 
@@ -68,10 +68,10 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      password:
-        from_secret: dockerhub_password
       username:
         from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
       repo: mwalbeck/jjmumblebot
 
   - name: notify
@@ -101,6 +101,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 352ab9f1ba64694ffe2da74422b5a1ff7335852c18689f45d7770c790ab396c0
+hmac: da7b7a428e02b1262473c7f2bd49a58ec13a48e25b7e04e497069b2aa2c74162
 
 ...
