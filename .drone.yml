@@ -34,11 +34,11 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      repo: mwalbeck/jjmumblebot
       password:
         from_secret: dockerhub_password_ro
       username:
         from_secret: dockerhub_username
+      repo: mwalbeck/jjmumblebot
       dry_run: true
 
 trigger:
@@ -68,11 +68,11 @@ steps:
     pull: if-not-exists
     settings:
       dockerfile: Dockerfile
-      repo: mwalbeck/jjmumblebot
       password:
         from_secret: dockerhub_password
       username:
         from_secret: dockerhub_username
+      repo: mwalbeck/jjmumblebot
 
   - name: notify
     image: plugins/matrix
