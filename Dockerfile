@@ -1,4 +1,4 @@
-FROM python:3.9.7-slim-buster@sha256:6287ac20d87194ba1a1a7a3d88feaf758a0c92a98ea7106de7fde2a2a1bcbbe3
+FROM python:3.9.7-slim-buster@sha256:e2f57b02598bd14b99c3e127f9a7f07d677b679a254435390c1fc9d5da064dbe
 
 # renovate: datasource=github-tags depName=DuckBoss/JJMumbleBot versioning=semver
 ENV JJMUMBLEBOT_VERSION v5.2.0
