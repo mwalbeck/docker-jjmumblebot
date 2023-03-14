@@ -1,4 +1,4 @@
-FROM python:3.10.10-slim-bullseye@sha256:e4e3a6648a564bd67b149dff432c85911118c5892bb0ec121e33743dbcbe3ff1
+FROM python:3.10.10-slim-bullseye@sha256:875d13333257e9f7ac2caf391bc8182fdd43c9c19d6a49fe27166eb42142c68a
 
 # renovate: datasource=github-tags depName=DuckBoss/JJMumbleBot versioning=semver
 ENV JJMUMBLEBOT_VERSION v5.2.0
